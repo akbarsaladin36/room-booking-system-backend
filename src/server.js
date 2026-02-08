@@ -15,6 +15,7 @@ app.use(compression())
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use('/room-booking-system-app/api', ApiRoutes)
+app.use('/room-booking-system-app/api/images', express.static('src/uploads'))
 
 app.listen(port, () => {
   console.log(`✅ Room Booking System Backend API is connected at port ${port}`)
