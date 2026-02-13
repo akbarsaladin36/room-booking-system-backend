@@ -9,8 +9,20 @@ class TransactionController {
         return await transactionService.GetTransactionsByUserService(req, res)
     }
 
+    async GetTotalRevenueExpenseByTransactionController(req, res) {
+        return await transactionService.GetTransactionsRevenueExpenseService(req, res)
+    }
+
     async GetTransactionController(req, res) {
         return await transactionService.GetTransactionService(req, res)
+    }
+
+    async CreateTransactionController(req, res) {
+        return await transactionService.CreateTransactionService(req, res)
+    }
+
+    async UpdateTransactionController(req, res) {
+        return await transactionService.UpdateTransactionService(req, res)
     }
 
     async DeleteTransactionController(req, res) {
