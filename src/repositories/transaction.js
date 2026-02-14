@@ -14,8 +14,8 @@ class TransactionRepository {
     async GetTotalAll() {
         const rows = await db.select(
             db.raw("CONCAT(YEAR(created_at), '-', LPAD(MONTH(created_at),2,'0')) AS month_year"),
-            db.raw(`SUM(CASE WHEN transaction_type = 'revenue' THEN total_price ELSE 0 END) AS revenue`),
-            db.raw(`SUM(CASE WHEN transaction_type = 'expense' THEN total_price ELSE 0 END) AS expense`)
+            db.raw(`SUM(CASE WHEN transaction_type = 'revenue' AND status = 'paid' THEN total_price ELSE 0 END) AS revenue`),
+            db.raw(`SUM(CASE WHEN transaction_type = 'expense' AND status = 'paid' THEN total_price ELSE 0 END) AS expense`)
         )
         .from('transactions')
         .groupByRaw("YEAR(created_at), MONTH(created_at)")
